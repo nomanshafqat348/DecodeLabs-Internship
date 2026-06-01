@@ -1,0 +1,201 @@
+:root {
+    --mocha-mousse: #A5956F;  /* گائیڈ کے مطابق رنگ */
+    --ethereal-blue: #A0D4E0;
+    --moonlit-grey: #F2F0EA;
+    --dark-text: #2B2B2B;
+    --white: #FFFFFF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif; /* باڈی ٹیکسٹ کے لیے */
+    background-color: var(--moonlit-grey);
+    color: var(--dark-text);
+    line-height: 1.6;
+}
+
+h1, h2, h3, .logo {
+    font-family: 'Montserrat', sans-serif; /* ہیڈنگز کے لیے */
+}
+
+/* --- بٹن کمپوننٹ --- */
+.btn-component {
+    background-color: var(--mocha-mousse);
+    color: var(--white);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.3s ease;
+}
+
+.btn-component:hover {
+    background-color: #8C7D5B;
+}
+
+/* --- ہیڈر اور نیویگیشن (Flexbox کا استعمال) --- */
+.main-header {
+    background-color: var(--white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--dark-text);
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--dark-text);
+    font-weight: 500;
+}
+
+.menu-toggle {
+    display: none; /* ڈیسک ٹاپ پر چھپا رہے گا */
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* --- ہیرو سیکشن --- */
+.hero-section {
+    background-color: var(--ethereal-blue);
+    padding: 40px 20px;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.hero-section h1 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem); /* فلوئڈ ٹائپوگرافی clamp کا استعمال */
+    margin-bottom: 10px;
+}
+
+/* --- موبائل فرسٹ لے آؤٹ (ڈیفالٹ: سنگل کالم) --- */
+.app-container {
+    display: grid;
+    grid-template-columns: 1fr; /* موبائل پر صرف ایک کالم */
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.sidebar {
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.sidebar ul {
+    list-style: none;
+    margin-top: 15px;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: var(--dark-text);
+}
+
+/* کینٹنٹ گریڈ (کارڈز کے لیے) */
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* موبائل پر کارڈز ایک کے نیچے ایک آئیں گے */
+    gap: 20px;
+}
+
+.card {
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+/* فوٹر */
+.main-footer {
+    background-color: var(--white);
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    font-size: 14px;
+}
+
+/* --- میڈیا کیوریز (بڑی اسکرینوں کے لیے رسپانسو لاجک) --- */
+
+/* 1. ٹیسٹ/ٹیبلٹ بریک پوائنٹ (768px) */
+@media (min-width: 768px) {
+    .content-grid {
+        grid-template-columns: repeat(2, 1fr); /* کارڈز دو کالمز میں تقسیم ہو جائیں گے */
+    }
+}
+
+/* 2. ڈیسک ٹاپ بریک پوائنٹ (1024px) */
+@media (min-width: 1024px) {
+    .app-container {
+        grid-template-columns: 250px 1fr; /* سائیڈ بار 250px کا اور باقی جگہ مین کینٹنٹ کی */
+    }
+
+    .content-grid {
+        grid-template-columns: repeat(3, 1fr); /* کارڈز تین کالمز میں آ جائیں گے */
+    }
+}
+
+/* موبائل مینیو کی بریک ڈاؤن ورکنگ */
+@media (max-width: 767px) {
+    .nav-container {
+        display: none; /* موبائل پر نیویگیشن ڈیفالٹ میں چھپ جائے گی */
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    
+    .nav-container.active {
+        display: flex; /* جاوا اسکرپٹ کے ذریعے جب ایکٹو ہو تو نظر آئے */
+    }
+
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    .menu-toggle {
+        display: block; /* موبائل پر ہیمبرگر بٹن نظر آئے گا */
+    }
+}
